@@ -6,7 +6,7 @@ interface Options {
 }
 class User {
   public name: string; //присваивается всем методам по умолчанию
-  protected AGE: number;//можно обратиться только внутри класса и дочерних классов
+  protected AGE: number; //можно обратиться только внутри класса и дочерних классов
   private nickName: string; // невозможно обратиться за пределами класса
   readonly password: string; //нельзя изменить, только для чтения
   constructor({ name, age, nickName, pass }: Options) {
@@ -20,16 +20,17 @@ class User {
   }
   public getAge(): number {
     return this.AGE;
-  }                     //Чтение приватных полей
-//   public get userAge(){
-//     return this.AGE;
-//   }
-  public changeAge(age:number){////Изменение приватных полей за пределами 
-    this.AGE = age;            ///класса с помощью метода или сеттера
+  } //Чтение приватных полей
+  //   public get userAge(){
+  //     return this.AGE;
+  //   }
+  public changeAge(age: number) {
+    ////Изменение приватных полей за пределами
+    this.AGE = age; ///класса с помощью метода или сеттера
   }
-//   public set newAge(age:number){
-//     this.AGE = age;
-//   }
+  //   public set newAge(age:number){
+  //     this.AGE = age;
+  //   }
 }
 const sashka = new User({
   name: "Sahka",
