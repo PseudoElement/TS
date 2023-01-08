@@ -1,11 +1,10 @@
 const debounce = (callback, ms) => {
   let timer;
   return function () {
-    const callbackCall = ()=>{
-      callback.apply(this, arguments)
-    }
     clearTimeout(timer);
-    timer = setTimeout(callbackCall, ms);
+    timer = setTimeout(()=>{
+      callback.apply(this, arguments)
+    }, ms);
   };
 };
 const input = document.querySelector(`.test`);
