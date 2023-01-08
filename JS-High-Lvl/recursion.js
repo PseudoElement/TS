@@ -26,14 +26,34 @@ const ball = document.querySelector(".ball");
 //     )
 //     .then(() => rotateBall());
 // }
-rotateBall();
-const start = `10%`;
-const end = `50%`;
-let position = start;
-function rotateBall() {
-  setTimeout(() => {
-    ball.style.left = position;
-    position === start ? (position = end) : (position = start);
+// rotateBall();
+// const start = `10%`;
+// const end = `50%`;
+// let position = start;
+// function rotateBall() {
+//   setTimeout(() => {
+//     ball.style.left = position;
+//     position === start ? (position = end) : (position = start);
+//     rotateBall();
+//   }, 1000);
+// }
+(async function rotateBall() {
+  try {
+    await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        ball.style.cssText = `left: 50%;
+                  transform: rotate(180deg)`;
+        resolve();
+      }, 1000);
+    });
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        ball.style.cssText = `left: 10%;`;
+        resolve();
+      }, 1000);
+    });
     rotateBall();
-  }, 1000);
-}
+  } catch (e) {
+    console.log("MY ERROR:" + e);
+  }
+})();
