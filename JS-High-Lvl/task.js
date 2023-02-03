@@ -58,7 +58,6 @@ function isSimple(num) {
       }
       return true;
 }
-isSimple(10);
 function findSame(arr1, arr2) {
       const filter = (arr) =>
             arr.filter((el, index) => arr.indexOf(el) !== index);
@@ -66,23 +65,29 @@ function findSame(arr1, arr2) {
       const repeatedArr2 = filter(arr2);
       return [
             ...new Set(
-                  repeatedArr1.reduce((acc, el) => {
-                        repeatedArr2.includes(el) && acc.push(el);
+                  repeatedArr2.reduce((acc, el) => {
+                        repeatedArr1.includes(el) && acc.push(el);
                         return acc;
                   }, [])
             ),
-      ];
+      ].sort((a, b) => a - b);
 }
-
-const l_1_9 = Array.from({ length: 6 }, (_, i) => ++i),
-      multX = (f) =>
-            l_1_9.reduce((t, x) => {
-                  t[x.toString(10)] = x * f;
-                  return t;
-            }, {});
-console.table(
-      l_1_9.reduce((e, n) => {
-            e[n.toString(10)] = multX(n);
-            return e;
-      }, {})
-);
+function multilpy(num) {
+      let res = "     ";
+      for (let k = 1; k <= num; k++) {
+            k < 9 ? (res += k + "   ") : (res += k + "  ");
+      }
+      for (let i = 1; i <= num; i++) {
+            res += `\n${i < 10 ? " " + i : i}`;
+            for (let j = 1; j <= num; j++) {
+                  res += `${
+                        i * j >= 10
+                              ? i * j >= 100
+                                    ? " " + i * j
+                                    : "  " + i * j
+                              : "   " + i * j
+                  }`;
+            }
+      }
+      console.log(res);
+}
