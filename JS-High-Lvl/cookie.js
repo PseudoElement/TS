@@ -15,7 +15,7 @@ function getCookie(name){
     let result = "";
     arrCookie.forEach(el=>{
         if(el.indexOf(name) !== -1){
-            result = el.substring(name.length +   1);
+            result = el.slice(name.length + 1);
         }
     })
     return result;
