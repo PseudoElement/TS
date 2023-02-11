@@ -2,11 +2,13 @@
 
 function setCookie(name, value, expirationTerm){
     const date = new Date();
-    date.setDate(date.getDate() + expirationTerm * 24 * 60 * 60 * 1000)
-    document.cookie = `${name}=${value}; expires=${date.toUTCString()}`
+    date.setDate(date.getDate() + expirationTerm)
+    document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`
 }
-setCookie("name", "Pavel", 365)
-setCookie("lastName", "Davidsovich", 365)
+
+setCookie("name", "Me", 360)
+deleteCookie("name")
+
 function getCookie(name){
     const cDecoded = decodeURIComponent(document.cookie);
     const arrCookie = cDecoded.split("; ");
@@ -37,11 +39,10 @@ function getCookie(name){
 }
 
 function deleteCookie(name){
-    setCookie(name, null, null)
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`
 }
-deleteCookie("im")
-deleteCookie("ima")
-deleteCookie("work")
 
-console.log(document.cookie)
-console.log(getCookie("lastName"))  
+
+var startOfDay = new Date();
+startOfDay.setDate(0, 0, 0, 0);
+console.log(startOfDay.toUTCString())
